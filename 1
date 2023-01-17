@@ -1,0 +1,69 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+
+using namespace std;
+
+int main () {
+
+    double homeprice(0);
+    double downpayment(0);
+    double lengthofloan(0);
+    double monthlyInterestRate(0);
+    double propertytaxrate(0);
+    double insurancerate(0);
+    double mortgageprinciple(0);
+    double monthlypropertytax(0);
+    double monthlyinsurance(0);
+    double monthlymortgage(0);
+    
+
+    while (true) {
+
+        cout << "Enter the home price in dollars:";
+        cin >> homeprice;
+
+        cout << "Enter the down payment in dollars:";
+        cin >> downpayment;
+        
+        cout << "Enter the length of the loan in months:";
+        cin >> lengthofloan;
+        
+        cout << "Enter the monthly interest as a percent:";
+        cin >> monthlyInterestRate;
+        monthlyInterestRate= monthlyInterestRate/100;
+
+        cout << "Enter the property tax as a percent:";
+        cin >> propertytaxrate;
+        propertytaxrate = propertytaxrate/100;
+        
+        cout << "Enter the insurance rate as a percent:";
+        cin >> insurancerate;
+        insurancerate = insurancerate/100;
+
+
+//find mortgage principle
+    mortgageprinciple = homeprice - downpayment;
+
+//find monthlypropertytax
+    monthlypropertytax = propertytaxrate*homeprice/12;
+
+//find monthlyinsurance
+    monthlyinsurance = insurancerate*homeprice/12;
+
+//find monthlymortgage
+    monthlymortgage = (mortgageprinciple*(monthlyInterestRate*(pow(1+monthlyInterestRate,lengthofloan)))
+    /(pow(1+monthlyInterestRate,lengthofloan) -1 )+ monthlypropertytax + monthlyinsurance);
+        
+    cout<<"Monthly payment: " <<monthlymortgage<<endl;
+    
+    cout<<"Total paid: " <<monthlymortgage*lengthofloan<<endl;
+    
+    cout<<"Principle paid: " <<homeprice-downpayment<<endl;
+    
+    cout<<"Additional paid: " <<monthlymortgage*lengthofloan - homeprice+downpayment<<endl;
+
+    
+    return(0);
+    }
+}
